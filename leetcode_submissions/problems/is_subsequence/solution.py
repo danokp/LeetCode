@@ -1,12 +1,8 @@
 class Solution:
     def isSubsequence(self, sub: str, target: str) -> bool:
-        if sub == "":
-            return True
-        count = 0
-        for ch in target:
-            if len(sub) == count:
-                break
-            if ch == sub[count]:
-                count += 1
-            
-        return count == len(sub)
+        stack = list(sub)
+
+        for chr in target[::-1]:
+            if stack and stack[-1] == chr:
+                stack.pop(-1)
+        return len(stack) == 0
